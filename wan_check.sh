@@ -30,6 +30,12 @@ else
 	network
 	if [ $? -eq 0 ]; then
 		echo "[$d]网络不通畅"
-		adb shell reboot
+        # toggle airplane mode on
+		adb shell "su -c 'settings put global airplane_mode_on 1'"
+        adb shell "su -c 'am broadcast -a android.intent.action.AIRPLANE_MODE'"
+        sleep 3
+        # toggle airplane mode off
+        adb shell "su -c 'settings put global airplane_mode_on 0'"
+        adb shell "su -c 'am broadcast -a android.intent.action.AIRPLANE_MODE'"
 	fi
 fi
