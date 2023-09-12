@@ -37,8 +37,7 @@ else
         # toggle airplane mode off
         adb shell "su -c 'settings put global airplane_mode_on 0'"
         adb shell "su -c 'am broadcast -a android.intent.action.AIRPLANE_MODE'"
-	fi
-    if [ $? -eq 1 ]; then
+    else
         echo "[$d]网络通畅"
-    fi
+	fi
 fi
